@@ -1,22 +1,21 @@
-package Example.springai.controller;
+package com.chstbot.aichatbot.controller;
 
 import org.springframework.web.bind.annotation.*;
+import com.chstbot.aichatbot.service.AiService;
 
-import Example.springai.service.GroqService;
-
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/ai")
-public class AIController {
+@RequestMapping("")
+@CrossOrigin(origins = "https://ask-ai-frontend-hazel.vercel.app")
+public class AiController {
 
-    private final GroqService groqService;
+    private AiService aiService;
 
-    public AIController(GroqService groqService) {
-        this.groqService = groqService;
+    public AiController(AiService aiService) {
+        this.aiService = aiService;
     }
 
     @GetMapping("/ask")
     public String ask(@RequestParam String prompt) {
-        return groqService.askAI(prompt);
+        return aiService.askAi(prompt);
     }
 }
